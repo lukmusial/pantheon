@@ -1,0 +1,8 @@
+# the raised drum, the step rings and the gilded bronze dome; the block's second pediment (2026-11-25)
+# name, eye, look-at (Blender metres), field of view, seconds to settle
+do_front      0 125 0.2       0 30 22       55 8
+do_corner     -22 70 0.2      -10 25 26     60 8
+do_lane       35 40 0.2       10 0 32       70 8
+do_aerial     -70 175 65      0 30 20       50 8
+do_top        -40 40 60       0 0 40        55 8
+do_block      0 70 0.2        0 33 27       30 8

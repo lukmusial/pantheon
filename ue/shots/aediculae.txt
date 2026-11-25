@@ -1,0 +1,10 @@
+# the eight aediculae (the small-statue niches): the gold strip at their top (flicker) and the stains
+# name, eye, look-at (Blender metres), field of view, seconds to settle
+aed_022  12.01 4.97 3.00   19.40 8.04 5.20   48 6
+aed_067  4.97 12.01 3.00   8.04 19.40 5.20   48 3
+aed_112  -4.97 12.01 3.00   -8.04 19.40 5.20   48 3
+aed_157  -12.01 4.97 3.00   -19.40 8.04 5.20   48 3
+aed_202  -12.01 -4.97 3.00   -19.40 -8.04 5.20   48 3
+aed_247  -4.97 -12.01 3.00   -8.04 -19.40 5.20   48 3
+aed_292  4.97 -12.01 3.00   8.04 -19.40 5.20   48 3
+aed_337  12.01 -4.97 3.00   19.40 -8.04 5.20   48 3

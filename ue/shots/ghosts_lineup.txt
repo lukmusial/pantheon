@@ -1,0 +1,8 @@
+# F3 with -PantheonGhostLineup: the five ghosts in a row at the centre, facing the door. First they
+# walk on the spot (the priest with raised hands), from 12 s they kneel.
+l_front_stand  0 9.5 1.2     0 2 0.9    45 4
+l_side_stand   6.0 6.5 1.2   0.3 2 0.9  45 2
+l_side_stand2  6.0 6.5 1.2   0.3 2 0.9  45 1.5
+l_back_stand   0 -5.5 1.2    0 2 0.9    45 2
+l_back_kneel   0 -5.5 1.2    0 2 0.6    45 7
+l_side_kneel   6.0 6.5 1.2   0.3 2 0.6  45 2.5

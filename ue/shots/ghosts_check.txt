@@ -1,0 +1,4 @@
+# are the ghosts there? a kneeling worshipper close (the one by the aedicula at 67.5 at the start),
+# and the procession from the door
+gc_close  4.6 13.6 1.5   7.1 17.2 0.9    50 8
+gc_door   0 18 1.7    0 0 1.0     75 4

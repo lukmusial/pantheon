@@ -1,0 +1,9 @@
+# the pediment's apex, where the bronze roof's end fought the raking cornices (user, 2026-11-25)
+# name, eye, look-at (Blender metres), field of view, seconds to settle
+ped_apex      0 75 1.7        0 49.5 23     18 6
+ped_apex_l    -14 68 2        0 49.5 23     18 6
+ped_apex_r    14 68 2         0 49.5 23     18 6
+ped_front     0 85 1.7        0 49.5 20     40 6
+ped_corner    -24 66 1.7      -14 49.5 18   35 6
+ped_eagle     0 70 1.7        0 49.5 21     22 6
+ped_close     -3 62 12        0 49.5 20.5   16 6

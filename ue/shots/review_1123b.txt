@@ -1,0 +1,7 @@
+# second round (2026-11-23): column shadows outside, capitals, the strip above the capitals inside
+portico_shadow  -9 54 1.7    -6.8 48.5 4     60
+portico_caps    -3 47 8      -6.8 48.5 12.9  55
+portico_caps2   3 41 9       11.35 43.9 12.9 55
+frieze_close    0 0 6        21.7 0 10.6     35
+frieze_wide     -5 5 1.7     16 -14 10       70
+exedra_caps     5 0 6        21.8 -1.5 9.9   40

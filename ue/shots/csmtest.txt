@@ -1,0 +1,5 @@
+portico_shadow  -9 54 1.7    -6.8 48.5 4     60
+portico_cols -6 46 1.6 0 40 6
+start 0 58 1.6 0 24 4.5
+fires_wide 0 -4 1.6 0 -20 2.5 75
+apse_left -6 -11 1.6 -5.25 -21.07 5.2

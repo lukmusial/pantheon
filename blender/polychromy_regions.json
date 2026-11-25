@@ -1,0 +1,172 @@
+{
+  "_doc": [
+    "Regions to segment per statue for blender/paint_statues.py (prompts only; colours live in polychromy_palette.json).",
+    "Each region: name (used for the colour lookup), kind (skin, hair, beard, garment, attribute, support, sandals, plinth),",
+    "prompts (GroundingDINO phrases; masks of all prompts are pooled), views (body, head or both), threshold (detector score),",
+    "rank: overrides the priority of the region's kind when masks overlap (order: beard 0, hair 1, sandals 2, skin 3, attribute 4, plinth 5, support 6, garment 7; e.g. 0.5 for a helmet over hair).",
+    "zmin_face: lowest point of the region in face heights above the eye line (e.g. 0.55 keeps a helmet off the hair at the temples).",
+    "zmin_rel / zmax_rel: height range of the region as a fraction of the statue height (defaults per kind: plinth <0.3, beard >0.5, sandals <0.2).",
+    "vote (fraction of the views that see a vertex which must agree; default 0.35), max_mask_frac (largest mask, as a fraction of the silhouette; default per kind).",
+    "A statue's list replaces 'default_regions' entirely unless it sets \"inherit\": true, in which case its regions are added",
+    "to the defaults and regions with the same name override them. Keys not listed here use default_regions.",
+    "Optional 'hints': list of {region, centre [x,y,z] in metres, radius} spheres that force a label (manual fixes).",
+    "Optional 'beard': false removes the beard region; 'face': false skips eyes, brows and lips."
+  ],
+  "default_regions": [
+    {"name": "hair", "kind": "hair", "prompts": ["hair"], "views": "both", "threshold": 0.25},
+    {"name": "beard", "kind": "beard", "prompts": ["beard"], "views": "head", "threshold": 0.4},
+    {"name": "face", "kind": "skin", "prompts": ["face"], "views": "head", "threshold": 0.3},
+    {"name": "hand", "kind": "skin", "prompts": ["hand"], "views": "body", "threshold": 0.35},
+    {"name": "foot", "kind": "skin", "prompts": ["foot"], "views": "body", "threshold": 0.3, "zmax_rel": 0.25},
+    {"name": "garment", "kind": "garment", "prompts": ["robe", "cloak", "clothing"], "views": "body", "threshold": 0.25},
+    {"name": "sandals", "kind": "sandals", "prompts": ["sandal"], "views": "body", "threshold": 0.4},
+    {"name": "plinth", "kind": "plinth", "prompts": ["base"], "views": "body", "threshold": 0.3}
+  ],
+  "statues": {
+    "jupiter_smyrna": {"inherit": true, "regions": [
+      {"name": "beard", "kind": "beard", "prompts": ["beard"], "views": "both", "threshold": 0.3},
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["robe", "cloak", "clothing"], "views": "body", "threshold": 0.3},
+      {"name": "thunderbolt", "kind": "attribute", "prompts": ["lightning bolt", "thunderbolt"], "views": "body", "threshold": 0.3}
+    ]},
+    "venus_capitoline": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "drapery", "kind": "garment", "prompts": ["cloth", "drapery"], "views": "body", "threshold": 0.3},
+      {"name": "hydria", "kind": "attribute", "prompts": ["vase"], "views": "body", "threshold": 0.3}
+    ]},
+    "ares_ludovisi": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "drapery", "kind": "garment", "prompts": ["robe", "fabric", "cloth on lap"], "views": "body", "threshold": 0.25, "max_mask_frac": 0.45},
+      {"name": "shield", "kind": "attribute", "prompts": ["shield"], "views": "body", "threshold": 0.3},
+      {"name": "sword", "kind": "attribute", "prompts": ["sword"], "views": "body", "threshold": 0.35},
+      {"name": "eros", "kind": "support", "prompts": ["small child"], "views": "body", "threshold": 0.35}
+    ]},
+    "apollo_belvedere": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "chlamys", "kind": "garment", "prompts": ["cloak", "cloth"], "views": "body", "threshold": 0.3},
+      {"name": "tree trunk", "kind": "support", "prompts": ["tree trunk"], "views": "body", "threshold": 0.3}
+    ]},
+    "diana_gabii": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["dress", "cloak", "robe"], "views": "body", "threshold": 0.25}
+    ]},
+    "athena_giustiniani": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["cloak", "mantle", "dress"], "views": "body", "threshold": 0.25},
+      {"name": "helmet", "kind": "attribute", "prompts": ["helmet"], "views": "both", "threshold": 0.3, "rank": 0.5, "zmin_face": 0.55},
+      {"name": "spear", "kind": "attribute", "prompts": ["spear"], "views": "body", "threshold": 0.3},
+      {"name": "snake", "kind": "attribute", "prompts": ["snake"], "views": "body", "threshold": 0.35}
+    ]},
+    "neptune_nimes": {"inherit": true, "regions": [
+      {"name": "beard", "kind": "beard", "prompts": ["beard"], "views": "both", "threshold": 0.3},
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "drapery", "kind": "garment", "prompts": ["cloth", "drapery"], "views": "body", "threshold": 0.3, "max_mask_frac": 0.35},
+      {"name": "trident", "kind": "attribute", "prompts": ["trident"], "views": "body", "threshold": 0.3},
+      {"name": "dolphin", "kind": "attribute", "prompts": ["dolphin", "fish"], "views": "body", "threshold": 0.35}
+    ]},
+    "apollo_lykeios": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "tree trunk", "kind": "support", "prompts": ["tree trunk"], "views": "body", "threshold": 0.3}
+    ]},
+    "herakles_lansdowne": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "club", "kind": "attribute", "prompts": ["wooden club"], "views": "body", "threshold": 0.3},
+      {"name": "lion skin", "kind": "garment", "prompts": ["lion skin", "animal fur"], "views": "body", "threshold": 0.25}
+    ]},
+    "dionysus": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "drapery", "kind": "garment", "prompts": ["cloth", "drapery"], "views": "body", "threshold": 0.35},
+      {"name": "wreath", "kind": "attribute", "prompts": ["wreath"], "views": "head", "threshold": 0.35, "rank": 0.5},
+      {"name": "pillar", "kind": "support", "prompts": ["pillar"], "views": "body", "threshold": 0.35}
+    ]},
+    "hermes_logios": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "chlamys", "kind": "garment", "prompts": ["cloak", "cloth"], "views": "body", "threshold": 0.25}
+    ]},
+    "augustus_prima_porta": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "cuirass", "kind": "attribute", "prompts": ["chest armor"], "views": "body", "threshold": 0.3, "max_mask_frac": 0.35},
+      {"name": "paludamentum", "kind": "garment", "prompts": ["cloak", "skirt", "tunic"], "views": "body", "threshold": 0.25},
+      {"name": "cupid", "kind": "support", "prompts": ["small child", "dolphin"], "views": "body", "threshold": 0.35}
+    ]},
+    "ceres_louvre": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["cloak", "veil", "mantle", "dress"], "views": "both", "threshold": 0.25}
+    ]},
+    "hermes_farnese": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "chlamys", "kind": "garment", "prompts": ["cloak", "cloth"], "views": "body", "threshold": 0.25},
+      {"name": "sandals", "kind": "sandals", "prompts": ["sandal", "winged sandal"], "views": "body", "threshold": 0.3},
+      {"name": "tree trunk", "kind": "support", "prompts": ["tree trunk"], "views": "body", "threshold": 0.3}
+    ]},
+    "caesar_borghese": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "paludamentum", "kind": "garment", "prompts": ["cloak", "cloth"], "views": "body", "threshold": 0.25},
+      {"name": "cuirass", "kind": "attribute", "prompts": ["armor", "breastplate"], "views": "body", "threshold": 0.3},
+      {"name": "tree trunk", "kind": "support", "prompts": ["tree trunk"], "views": "body", "threshold": 0.3}
+    ]},
+    "attic_aesculapius": {"inherit": true, "regions": [
+      {"name": "beard", "kind": "beard", "prompts": ["beard"], "views": "both", "threshold": 0.3},
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["robe", "cloak", "clothing"], "views": "body", "threshold": 0.25},
+      {"name": "staff", "kind": "attribute", "prompts": ["staff", "snake", "walking stick"], "views": "body", "threshold": 0.3}
+    ]},
+    "attic_augustus_jupiter": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["robe", "cloak", "clothing"], "views": "body", "threshold": 0.25},
+      {"name": "sceptre", "kind": "attribute", "prompts": ["long pole", "rod"], "views": "body", "threshold": 0.3},
+      {"name": "throne", "kind": "support", "prompts": ["throne", "chair"], "views": "body", "threshold": 0.3}
+    ]},
+    "attic_ceres": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["cloak", "veil", "dress"], "views": "body", "threshold": 0.25, "max_mask_frac": 0.6},
+      {"name": "throne", "kind": "support", "prompts": ["throne", "armchair", "chair"], "views": "body", "threshold": 0.3}
+    ]},
+    "attic_juno": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "mantle", "kind": "garment", "prompts": ["cloak", "dress", "robe"], "views": "body", "threshold": 0.25}
+    ]},
+    "attic_mars": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "chlamys", "kind": "garment", "prompts": ["cloak", "cloth"], "views": "body", "threshold": 0.3, "max_mask_frac": 0.25},
+      {"name": "helmet", "kind": "attribute", "prompts": ["helmet"], "views": "body", "threshold": 0.3, "rank": 0.5, "zmin_face": 0.55},
+      {"name": "tree trunk", "kind": "support", "prompts": ["tree trunk"], "views": "body", "threshold": 0.3}
+    ]},
+    "attic_mercury": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "chlamys", "kind": "garment", "prompts": ["cloak", "cloth"], "views": "body", "threshold": 0.3, "max_mask_frac": 0.3},
+      {"name": "pillar", "kind": "support", "prompts": ["pillar", "tree trunk"], "views": "body", "threshold": 0.3}
+    ]},
+    "attic_nerva_jupiter": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["robe", "cloak", "clothing"], "views": "body", "threshold": 0.25},
+      {"name": "rock", "kind": "support", "prompts": ["rock"], "views": "body", "threshold": 0.35, "max_mask_frac": 0.3}
+    ]},
+    "attic_vulcan": {"inherit": true, "regions": [
+      {"name": "beard", "kind": "beard", "prompts": ["beard"], "views": "both", "threshold": 0.3},
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "exomis", "kind": "garment", "prompts": ["tunic", "clothing"], "views": "body", "threshold": 0.3, "max_mask_frac": 0.35},
+      {"name": "cap", "kind": "attribute", "prompts": ["cap", "hat"], "views": "body", "threshold": 0.3, "rank": 0.5, "zmin_face": 0.6},
+      {"name": "tools", "kind": "attribute", "prompts": ["hammer", "tongs", "anvil"], "views": "body", "threshold": 0.3}
+    ]},
+    "augustus_portico": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "cuirass", "kind": "attribute", "prompts": ["chest armor"], "views": "body", "threshold": 0.3, "max_mask_frac": 0.35},
+      {"name": "paludamentum", "kind": "garment", "prompts": ["cloak", "skirt", "tunic"], "views": "body", "threshold": 0.25},
+      {"name": "cupid", "kind": "support", "prompts": ["small child", "dolphin"], "views": "body", "threshold": 0.35}
+    ]},
+    "augustus_jupiter_hermitage": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "himation", "kind": "garment", "prompts": ["robe", "cloak", "clothing"], "views": "body", "threshold": 0.25},
+      {"name": "sceptre", "kind": "attribute", "prompts": ["long pole", "rod"], "views": "body", "threshold": 0.3},
+      {"name": "globe", "kind": "attribute", "prompts": ["orb", "ball"], "views": "body", "threshold": 0.3, "rank": 2.5},
+      {"name": "throne", "kind": "support", "prompts": ["throne", "chair"], "views": "body", "threshold": 0.3}
+    ]},
+    "agrippa_portico": {"inherit": true, "beard": false, "regions": [
+      {"name": "garment", "kind": "garment", "prompts": [], "views": "body"},
+      {"name": "paludamentum", "kind": "garment", "prompts": ["cloak", "cloth", "fabric"], "views": "body", "threshold": 0.25},
+      {"name": "sword belt", "kind": "attribute", "prompts": ["belt", "strap"], "views": "body", "threshold": 0.3},
+      {"name": "rudder", "kind": "attribute", "prompts": ["rudder", "oar"], "views": "body", "threshold": 0.3}
+    ]}
+  }
+}

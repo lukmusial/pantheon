@@ -1,0 +1,280 @@
+{
+  "_doc": [
+    "Colours for blender/paint_statues.py, taken from reference/polychromy.md (sections 2 and 3). Edit here only: the pipeline reads colours from nowhere else.",
+    "pigments: named sRGB colours (hex). A region's color is a pigment name or a hex value.",
+    "alpha = paint coverage over bare marble (0 bare, 1 opaque). Skin is a thin glaze (ganosis), 0.2-0.5.",
+    "Lookup for a region of a statue: statues.<key>.<region name> -> statues.<key>.<region kind> -> default.<region name> -> default.<region kind>.",
+    "Region kinds: skin, hair, beard, garment, attribute, support, sandals, plinth; face decals: eyebrows, eye_white, eye_corner, iris, iris_ring, pupil, lid_line, lips.",
+    "recess / crest (optional): colour mixed into the paint in folds and drill channels / on crests and ridges, mix = strength 0..1.",
+    "garment.border: band inside the garment along its edges, width_rel = band width / statue height; lines = ornamental lines in the band (pos, width as fractions of the band width, 0 = garment edge).",
+    "wear: 0..1, paint thinner on ridges than in recesses; wash_noise: low-frequency alpha variation.",
+    "plinth.mode: bare (alpha 0) or band (painted band just below the top of the scan's plinth; band_rel = band height / statue height)."
+  ],
+  "pigments": {
+    "egyptian_blue": "#3D5FA0",
+    "deep_blue": "#34508A",
+    "cinnabar": "#9C2F27",
+    "madder_red": "#B23A3A",
+    "madder_pink": "#C56E7A",
+    "red_ochre": "#A3443C",
+    "yellow_ochre": "#C99A3A",
+    "saffron": "#D2A64A",
+    "malachite": "#4E6B3A",
+    "green_earth": "#55703E",
+    "tyrian_purple": "#5E2340",
+    "carbon_black": "#15110F",
+    "gold": "#D4AF37",
+    "gilded_bronze": "#C9A04A",
+    "bronze": "#8C6A3E",
+    "ivory": "#EDE3CC",
+    "waxed_marble": "#ECE4D6",
+    "skin_female": "#EDD5BF",
+    "skin_youth": "#E3C3A2",
+    "skin_mature": "#D9B38E",
+    "skin_tanned": "#CF9F78",
+    "lips_male": "#A55E50",
+    "lips_female": "#B5655C",
+    "lid_dark": "#2B1E17",
+    "brow_dark": "#3A2A20",
+    "brow_fair": "#6B4A2E",
+    "eye_rim_pink": "#C98F84",
+    "iris_brown": "#5A3A24",
+    "iris_ring_brown": "#2E1E14",
+    "iris_blue_grey": "#6E7F8E",
+    "bark": "#6A5038",
+    "leather": "#6E3622"
+  },
+  "default": {
+    "wear": 0.25,
+    "wash_noise": 0.12,
+    "skin": {"color": "skin_youth", "alpha": 0.3},
+    "hair": {"color": "#4A3122", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.5}, "crest": {"color": "#6B4A2E", "mix": 0.35}},
+    "beard": {"color": "#4A3122", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.5}, "crest": {"color": "#6B4A2E", "mix": 0.35}},
+    "eyebrows": {"color": "brow_dark", "alpha": 0.7},
+    "eye_white": {"color": "waxed_marble", "alpha": 0.25},
+    "eye_corner": {"color": "eye_rim_pink", "alpha": 0.5},
+    "iris": {"color": "iris_brown", "alpha": 1.0},
+    "iris_ring": {"color": "iris_ring_brown", "alpha": 0.9},
+    "pupil": {"color": "carbon_black", "alpha": 1.0},
+    "lid_line": {"color": "lid_dark", "alpha": 0.9},
+    "lips": {"color": "lips_male", "alpha": 0.65},
+    "garment": {"color": "egyptian_blue", "alpha": 0.8, "border": {"color": "gold", "alpha": 0.9, "width_rel": 0.02}},
+    "attribute": {"color": "gilded_bronze", "alpha": 0.95},
+    "support": {"color": "bark", "alpha": 0.4},
+    "sandals": {"color": "leather", "alpha": 0.85},
+    "plinth": {"mode": "bare", "color": "red_ochre", "alpha": 0.6, "band_rel": 0.012}
+  },
+  "statues": {
+    "jupiter_smyrna": {
+      "skin": {"color": "skin_mature", "alpha": 0.35},
+      "hair": {"color": "#3B2A20", "alpha": 0.95, "recess": {"color": "#1E1611", "mix": 0.55}, "crest": {"color": "#5A4130", "mix": 0.45}},
+      "beard": {"color": "#3B2A20", "alpha": 0.95, "recess": {"color": "#1E1611", "mix": 0.55}, "crest": {"color": "#D4AF37", "mix": 0.2}},
+      "iris": {"color": "#5A3A24", "alpha": 1.0},
+      "himation": {"color": "tyrian_purple", "alpha": 0.85, "recess": {"color": "#3E1529", "mix": 0.5}, "crest": {"color": "#7E3A5C", "mix": 0.4},
+                   "border": {"color": "#3A1528", "alpha": 0.95, "width_rel": 0.03,
+                              "lines": [{"color": "gold", "pos": 0.15, "width": 0.16}, {"color": "gold", "pos": 0.6, "width": 0.24}]}},
+      "thunderbolt": {"color": "gilded_bronze", "alpha": 0.97},
+      "plinth": {"mode": "band", "color": "red_ochre", "alpha": 0.6, "band_rel": 0.008}
+    },
+    "venus_capitoline": {
+      "skin": {"color": "skin_female", "alpha": 0.25},
+      "hair": {"color": "#A0612E", "alpha": 0.9, "recess": {"color": "#5A3520", "mix": 0.4}, "crest": {"color": "gold", "mix": 0.5}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "iris": {"color": "iris_blue_grey", "alpha": 1.0},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "drapery": {"color": "#E0C27A", "alpha": 0.75, "border": {"color": "madder_pink", "alpha": 0.9, "width_rel": 0.02,
+                  "lines": [{"color": "gold", "pos": 0.85, "width": 0.12}]}},
+      "hydria": {"color": "bronze", "alpha": 0.9}
+    },
+    "ares_ludovisi": {
+      "skin": {"color": "#DDB896", "alpha": 0.4},
+      "hair": {"color": "#3E2B1F", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.5}, "crest": {"color": "#6B3F26", "mix": 0.45}},
+      "drapery": {"color": "cinnabar", "alpha": 0.85, "recess": {"color": "#5E1A16", "mix": 0.45},
+                  "border": {"color": "#3A1210", "alpha": 0.9, "width_rel": 0.022, "lines": [{"color": "gold", "pos": 0.5, "width": 0.2}]}},
+      "shield": {"color": "#B88A45", "alpha": 0.95},
+      "sword": {"color": "gilded_bronze", "alpha": 0.95},
+      "eros": {"color": "#EBCDB6", "alpha": 0.3},
+      "rock": {"color": "#8E8478", "alpha": 0.6}
+    },
+    "apollo_belvedere": {
+      "skin": {"color": "skin_youth", "alpha": 0.3},
+      "hair": {"color": "#B9873C", "alpha": 0.9, "recess": {"color": "#6B4A2E", "mix": 0.4}, "crest": {"color": "gold", "mix": 0.6}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "iris": {"color": "#8A5A2E", "alpha": 1.0},
+      "chlamys": {"color": "#A33B3B", "alpha": 0.85, "recess": {"color": "#6A2226", "mix": 0.45},
+                  "border": {"color": "egyptian_blue", "alpha": 0.9, "width_rel": 0.02, "lines": [{"color": "ivory", "pos": 0.5, "width": 0.15}]}},
+      "quiver strap": {"color": "leather", "alpha": 0.85},
+      "tree trunk": {"color": "bark", "alpha": 0.45}
+    },
+    "diana_gabii": {
+      "skin": {"color": "skin_female", "alpha": 0.25},
+      "hair": {"color": "#8A5A33", "alpha": 0.9, "recess": {"color": "#4A3122", "mix": 0.4}, "crest": {"color": "gold", "mix": 0.4}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "iris": {"color": "#6F7E6A", "alpha": 1.0},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "chiton": {"color": "ivory", "alpha": 0.45, "border": {"color": "madder_pink", "alpha": 0.9, "width_rel": 0.02}},
+      "himation": {"color": "saffron", "alpha": 0.8, "border": {"color": "egyptian_blue", "alpha": 0.9, "width_rel": 0.02,
+                   "lines": [{"color": "ivory", "pos": 0.5, "width": 0.12}]}}
+    },
+    "athena_giustiniani": {
+      "skin": {"color": "skin_female", "alpha": 0.25},
+      "hair": {"color": "#4A3122", "alpha": 0.9},
+      "iris": {"color": "#7A8C8A", "alpha": 1.0},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "himation": {"color": "deep_blue", "alpha": 0.85, "recess": {"color": "#22355E", "mix": 0.4}, "border": {"color": "gold", "alpha": 0.9, "width_rel": 0.02}},
+      "chiton": {"color": "ivory", "alpha": 0.5, "border": {"color": "yellow_ochre", "alpha": 0.9, "width_rel": 0.018,
+                 "lines": [{"color": "red_ochre", "pos": 0.5, "width": 0.25}]}},
+      "helmet": {"color": "gilded_bronze", "alpha": 0.95},
+      "spear": {"color": "gilded_bronze", "alpha": 0.95},
+      "snake": {"color": "#556B3A", "alpha": 0.85}
+    },
+    "neptune_nimes": {
+      "skin": {"color": "skin_mature", "alpha": 0.4},
+      "hair": {"color": "#2E2A2C", "alpha": 0.92, "crest": {"color": "#3E5A55", "mix": 0.3}},
+      "beard": {"color": "#2E2A2C", "alpha": 0.92, "crest": {"color": "#3E5A55", "mix": 0.3}},
+      "iris": {"color": "#5E7080", "alpha": 1.0},
+      "drapery": {"color": "egyptian_blue", "alpha": 0.85, "border": {"color": "#4C7A78", "alpha": 0.9, "width_rel": 0.022,
+                  "lines": [{"color": "gold", "pos": 0.5, "width": 0.2}]}},
+      "trident": {"color": "gilded_bronze", "alpha": 0.95},
+      "dolphin": {"color": "#4E6070", "alpha": 0.8, "crest": {"color": "#E3DCCB", "mix": 0.3}}
+    },
+    "apollo_lykeios": {
+      "skin": {"color": "skin_youth", "alpha": 0.3},
+      "hair": {"color": "#B9873C", "alpha": 0.9, "recess": {"color": "#6B4A2E", "mix": 0.4}, "crest": {"color": "gold", "mix": 0.6}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "iris": {"color": "#8A5A2E", "alpha": 1.0},
+      "tree trunk": {"color": "bark", "alpha": 0.45}
+    },
+    "herakles_lansdowne": {
+      "skin": {"color": "skin_tanned", "alpha": 0.5},
+      "hair": {"color": "#4A2E1F", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.5}},
+      "club": {"color": "#6A4A30", "alpha": 0.85, "recess": {"color": "#3E2B1E", "mix": 0.5}},
+      "lion skin": {"color": "#B08A4E", "alpha": 0.85, "recess": {"color": "#6B4A2A", "mix": 0.5}}
+    },
+    "dionysus": {
+      "skin": {"color": "#E8CDB3", "alpha": 0.3},
+      "hair": {"color": "#5A3322", "alpha": 0.92, "recess": {"color": "#2E1A12", "mix": 0.4}},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "drapery": {"color": "#6E2C4A", "alpha": 0.85, "border": {"color": "gold", "alpha": 0.9, "width_rel": 0.02}},
+      "wreath": {"color": "green_earth", "alpha": 0.9, "crest": {"color": "gilded_bronze", "mix": 0.4}},
+      "pillar": {"color": "waxed_marble", "alpha": 0.3}
+    },
+    "hermes_logios": {
+      "skin": {"color": "skin_youth", "alpha": 0.35},
+      "hair": {"color": "#5A3A24", "alpha": 0.92, "recess": {"color": "#2E1E14", "mix": 0.45}},
+      "chlamys": {"color": "#4A5E7E", "alpha": 0.85, "border": {"color": "red_ochre", "alpha": 0.9, "width_rel": 0.02}}
+    },
+    "augustus_prima_porta": {
+      "skin": {"color": "waxed_marble", "alpha": 0.0},
+      "hair": {"color": "#7A4E2C", "alpha": 0.9, "recess": {"color": "#3E2718", "mix": 0.45}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "cuirass": {"color": "waxed_marble", "alpha": 0.0},
+      "paludamentum": {"color": "madder_red", "alpha": 0.85, "recess": {"color": "#7A2226", "mix": 0.45}, "border": {"color": "egyptian_blue", "alpha": 0.85, "width_rel": 0.015}},
+      "tunic": {"color": "madder_red", "alpha": 0.85, "recess": {"color": "#7A2226", "mix": 0.45}},
+      "cupid": {"color": "skin_youth", "alpha": 0.0}
+    },
+    "ceres_louvre": {
+      "skin": {"color": "skin_female", "alpha": 0.25},
+      "hair": {"color": "#6B4A2E", "alpha": 0.9, "recess": {"color": "#3A2618", "mix": 0.4}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "himation": {"color": "yellow_ochre", "alpha": 0.8, "recess": {"color": "#8A6420", "mix": 0.4}, "border": {"color": "red_ochre", "alpha": 0.9, "width_rel": 0.02,
+                   "lines": [{"color": "gold", "pos": 0.5, "width": 0.15}]}},
+      "chiton": {"color": "ivory", "alpha": 0.5, "border": {"color": "egyptian_blue", "alpha": 0.9, "width_rel": 0.015}}
+    },
+    "hermes_farnese": {
+      "skin": {"color": "skin_youth", "alpha": 0.3},
+      "hair": {"color": "#4A3122", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.45}, "crest": {"color": "#6B4A2E", "mix": 0.4}},
+      "chlamys": {"color": "deep_blue", "alpha": 0.85, "border": {"color": "yellow_ochre", "alpha": 0.9, "width_rel": 0.02}},
+      "sandals": {"color": "leather", "alpha": 0.85, "crest": {"color": "gold", "mix": 0.5}},
+      "tree trunk": {"color": "bark", "alpha": 0.45}
+    },
+    "caesar_borghese": {
+      "skin": {"color": "#E3CDB4", "alpha": 0.2},
+      "hair": {"color": "#3E2B1F", "alpha": 0.9, "recess": {"color": "#1E1611", "mix": 0.4}},
+      "paludamentum": {"color": "madder_red", "alpha": 0.85, "recess": {"color": "#7A2226", "mix": 0.45}, "border": {"color": "gold", "alpha": 0.9, "width_rel": 0.02}},
+      "cuirass": {"color": "leather", "alpha": 0.6, "crest": {"color": "egyptian_blue", "mix": 0.25}},
+      "tree trunk": {"color": "bark", "alpha": 0.45}
+    },
+    "attic_aesculapius": {
+      "skin": {"color": "skin_mature", "alpha": 0.4},
+      "hair": {"color": "#4A3122", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.5}},
+      "beard": {"color": "#4A3122", "alpha": 0.92, "recess": {"color": "#1E1611", "mix": 0.5}},
+      "himation": {"color": "ivory", "alpha": 0.55, "border": {"color": "red_ochre", "alpha": 0.9, "width_rel": 0.025}},
+      "staff": {"color": "#6A4A30", "alpha": 0.85, "crest": {"color": "green_earth", "mix": 0.5}}
+    },
+    "attic_augustus_jupiter": {
+      "skin": {"color": "skin_youth", "alpha": 0.3},
+      "hair": {"color": "#7A4E2C", "alpha": 0.9, "recess": {"color": "#3E2718", "mix": 0.45}},
+      "himation": {"color": "tyrian_purple", "alpha": 0.85, "recess": {"color": "#3E1529", "mix": 0.5}, "border": {"color": "#3A1528", "alpha": 0.95, "width_rel": 0.03, "lines": [{"color": "gold", "pos": 0.15, "width": 0.16}, {"color": "gold", "pos": 0.6, "width": 0.24}]}},
+      "sceptre": {"color": "gilded_bronze", "alpha": 0.95},
+      "throne": {"color": "waxed_marble", "alpha": 0.0}
+    },
+    "attic_ceres": {
+      "skin": {"color": "skin_female", "alpha": 0.25},
+      "hair": {"color": "#6B4A2E", "alpha": 0.9},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "himation": {"color": "yellow_ochre", "alpha": 0.8, "recess": {"color": "#8A6420", "mix": 0.4}, "border": {"color": "red_ochre", "alpha": 0.9, "width_rel": 0.015, "lines": [{"color": "gold", "pos": 0.5, "width": 0.15}]}},
+      "throne": {"color": "waxed_marble", "alpha": 0.0}
+    },
+    "attic_juno": {
+      "skin": {"color": "skin_female", "alpha": 0.25},
+      "hair": {"color": "#4A3122", "alpha": 0.9},
+      "iris": {"color": "#4A3022", "alpha": 1.0},
+      "lips": {"color": "lips_female", "alpha": 0.65},
+      "mantle": {"color": "#4A3E7A", "alpha": 0.85, "border": {"color": "gold", "alpha": 0.9, "width_rel": 0.025}}
+    },
+    "attic_mars": {
+      "skin": {"color": "#DDB896", "alpha": 0.4},
+      "hair": {"color": "#3E2B1F", "alpha": 0.92},
+      "chlamys": {"color": "cinnabar", "alpha": 0.85, "border": {"color": "#3A1210", "alpha": 0.9, "width_rel": 0.025, "lines": [{"color": "gold", "pos": 0.5, "width": 0.2}]}},
+      "helmet": {"color": "egyptian_blue", "alpha": 0.9, "crest": {"color": "gilded_bronze", "mix": 0.4}},
+      "tree trunk": {"color": "bark", "alpha": 0.45}
+    },
+    "attic_mercury": {
+      "skin": {"color": "skin_youth", "alpha": 0.35},
+      "hair": {"color": "#5A3A24", "alpha": 0.92},
+      "chlamys": {"color": "#4A5E7E", "alpha": 0.85, "border": {"color": "red_ochre", "alpha": 0.9, "width_rel": 0.025}},
+      "pillar": {"color": "waxed_marble", "alpha": 0.0}
+    },
+    "attic_nerva_jupiter": {
+      "skin": {"color": "skin_mature", "alpha": 0.35},
+      "hair": {"color": "#3E2B1F", "alpha": 0.9},
+      "himation": {"color": "tyrian_purple", "alpha": 0.85, "recess": {"color": "#3E1529", "mix": 0.5}, "border": {"color": "#3A1528", "alpha": 0.95, "width_rel": 0.03, "lines": [{"color": "gold", "pos": 0.15, "width": 0.16}, {"color": "gold", "pos": 0.6, "width": 0.24}]}},
+      "rock": {"color": "#8E8478", "alpha": 0.5}
+    },
+    "attic_vulcan": {
+      "skin": {"color": "skin_tanned", "alpha": 0.5},
+      "hair": {"color": "#2E2420", "alpha": 0.92},
+      "beard": {"color": "#2E2420", "alpha": 0.92},
+      "exomis": {"color": "#8A7A66", "alpha": 0.8, "border": {"color": "#3A2A20", "alpha": 0.9, "width_rel": 0.02}},
+      "cap": {"color": "#7A3A2A", "alpha": 0.9},
+      "tools": {"color": "#5A6068", "alpha": 0.9}
+    },
+    "augustus_portico": {
+      "skin": {"color": "waxed_marble", "alpha": 0.0},
+      "hair": {"color": "#7A4E2C", "alpha": 0.9, "recess": {"color": "#3E2718", "mix": 0.45}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "cuirass": {"color": "gilded_bronze", "alpha": 0.82, "recess": {"color": "#5E3E1E", "mix": 0.55}, "crest": {"color": "gold", "mix": 0.4}},
+      "paludamentum": {"color": "madder_red", "alpha": 0.85, "recess": {"color": "#7A2226", "mix": 0.45}, "border": {"color": "egyptian_blue", "alpha": 0.85, "width_rel": 0.015}},
+      "tunic": {"color": "madder_red", "alpha": 0.85, "recess": {"color": "#7A2226", "mix": 0.45}},
+      "cupid": {"color": "skin_youth", "alpha": 0.0}
+    },
+    "augustus_jupiter_hermitage": {
+      "skin": {"color": "skin_youth", "alpha": 0.3},
+      "hair": {"color": "#7A4E2C", "alpha": 0.9, "recess": {"color": "#3E2718", "mix": 0.45}},
+      "eyebrows": {"color": "brow_fair", "alpha": 0.7},
+      "himation": {"color": "tyrian_purple", "alpha": 0.85, "recess": {"color": "#3E1529", "mix": 0.5}, "crest": {"color": "#7E3A5C", "mix": 0.4}, "border": {"color": "#3A1528", "alpha": 0.95, "width_rel": 0.03, "lines": [{"color": "gold", "pos": 0.15, "width": 0.16}, {"color": "gold", "pos": 0.6, "width": 0.24}]}},
+      "sceptre": {"color": "gilded_bronze", "alpha": 0.95},
+      "globe": {"color": "gilded_bronze", "alpha": 0.95},
+      "throne": {"color": "waxed_marble", "alpha": 0.0}
+    },
+    "agrippa_portico": {
+      "skin": {"color": "skin_mature", "alpha": 0.35},
+      "hair": {"color": "#3E2B1F", "alpha": 0.9, "recess": {"color": "#1E1611", "mix": 0.45}},
+      "paludamentum": {"color": "madder_red", "alpha": 0.85, "recess": {"color": "#7A2226", "mix": 0.45}, "border": {"color": "gold", "alpha": 0.9, "width_rel": 0.012}},
+      "sword belt": {"color": "leather", "alpha": 0.9, "crest": {"color": "gold", "mix": 0.4}},
+      "rudder": {"color": "gilded_bronze", "alpha": 0.95}
+    }
+  }
+}

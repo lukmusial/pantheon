@@ -1,0 +1,5 @@
+# the floors of the exedrae and the apse under the statues (user, 2026-11-25)
+rf_west       -8 0 1.6        -24 0 0.3     60 6
+rf_apse       0 -10 1.6       0 -25 0.3     60 6
+rf_diag       8 -8 1.6        18 -18 0.3    60 6
+rf_east       8 2 1.6         24 0 0.3      60 6
