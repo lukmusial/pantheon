@@ -1,0 +1,8 @@
+# round 5 (2026-11-23): portal fit, and the semicircle seen wide and zoomed
+semi_wide     0 0 1.7      0 22 14     90 6
+semi_zoom     0 0 1.7      0 22 14     30 6
+portal_in     0 12 1.7     0 26 6      60 5
+portal_left   -0.5 19 2    -3 26.5 5   40 5
+portal_top    0 18 3       0 26.5 8.5  40 5
+portal_out    0 34 1.7     0 26 6      60 5
+portal_out_l  1.5 31 2     -3 27 6     40 5

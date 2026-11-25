@@ -1,0 +1,5 @@
+# the sky with the engine's volumetric clouds (user, 2026-11-25)
+cl_front      0 125 0.2       0 30 22       70 10
+cl_up         0 90 0.2        10 40 40      80 10
+cl_oculus     0 0 1.6         0.5 0.5 44    60 10
+cl_aerial     -70 175 65      0 50 0        60 10

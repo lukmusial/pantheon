@@ -1,0 +1,37 @@
+MIT License
+
+Copyright (c) 2026 lukmusial
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+
+This licence covers the source code in this repository: blender/, tools/,
+ue/scripts/, ue/Pantheon/Source/, ue/Pantheon/Config/, ue/Pantheon/Build/,
+ue/Pantheon/Pantheon.uproject and the shell scripts in ue/.
+
+Everything else (the screenshots in docs/, the README, the research notes in
+reference/, the shot and film key lists, and the asset
+manifests and source notes) is licensed under Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International; see LICENSE-CONTENT.
+
+Third-party assets used by the project (statue scans, textures, scanned
+surfaces, the photo the pediment's eagle is modelled from) are not in this
+repository and keep their own licences, listed in assets/statues/manifest.md,
+assets/eagle/photos/SOURCES.md, assets/paintings/sources.md and the README.

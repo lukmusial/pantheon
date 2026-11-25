@@ -1,0 +1,16 @@
+# F3 mist ghosts in the app, timed from its start: each worshipper walking past on the ring with its
+# trail (toga, young woman, matron, old man in a tunic), the priest with raised hands and kneeling,
+# then the room.
+m_toga_0    5.88 8.09 1.5    9.11 12.54 0.9    60 19
+m_toga_1    5.88 8.09 1.5    9.11 12.54 0.9    60 2.5
+m_toga_2    5.88 8.09 1.5    9.11 12.54 0.9    60 2.5
+m_girl_0    -8.57 5.15 1.5   -13.29 7.98 0.9   60 3
+m_girl_1    -8.57 5.15 1.5   -13.29 7.98 0.9   60 2.5
+m_veil_0    9.51 -3.09 1.5   14.74 -4.79 0.9   60 2.5
+m_veil_1    9.51 -3.09 1.5   14.74 -4.79 0.9   60 2.5
+m_cloak_0   -8.66 -5.0 1.5   -13.42 -7.75 0.9  60 2.5
+m_cloak_1   -8.66 -5.0 1.5   -13.42 -7.75 0.9  60 2
+m_priest_up_0  2.6 -13.6 1.4 0 -17.4 0.9       55 6
+m_priest_up_1  2.6 -13.6 1.4 0 -17.4 0.9       55 2
+m_priest_kneel 2.6 -13.6 1.4 0 -17.4 0.9       55 11
+m_room      0 -4 1.7         0 18 1.0          80 3

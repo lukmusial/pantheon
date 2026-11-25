@@ -1,0 +1,12 @@
+# F3 in the app: wider views of the ghost procession and the thin fog
+w_settle  0 18 1.7    0 0 1.0     75 8
+w_door_0  0 18 1.7    0 0 1.0     75 1.5
+w_door_1  0 18 1.7    0 0 1.0     75 1.5
+w_door_2  0 18 1.7    0 0 1.0     75 1.5
+w_side_0  4 10 1.7    0 -4 0.9    70 1.5
+w_side_1  4 10 1.7    0 -4 0.9    70 1.5
+w_side_2  4 10 1.7    0 -4 0.9    70 1.5
+w_side_3  4 10 1.7    0 -4 0.9    70 1.5
+w_exed_0  -3 2 1.7    8 -2 0.9    75 1.5
+w_exed_1  -3 2 1.7    8 -2 0.9    75 1.5
+w_exed_2  -3 2 1.7    8 -2 0.9    75 1.5

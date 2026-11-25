@@ -1,0 +1,13 @@
+entrdome_settle 0 4 1.6 0 23 12 60 6
+entrdome_s00 0 4 1.6 0 23 12 60 0.25
+entrdome_s01 0 4 1.6 0 23 12 60 0.25
+entrdome_s02 0 4 1.6 0 23 12 60 0.25
+entrdome_s03 0 4 1.6 0 23 12 60 0.25
+entrdome_s04 0 4 1.6 0 23 12 60 0.25
+entrdome_s05 0 4 1.6 0 23 12 60 0.25
+entrdome_s06 0 4 1.6 0 23 12 60 0.25
+entrdome_s07 0 4 1.6 0 23 12 60 0.25
+entrdome_s08 0 4 1.6 0 23 12 60 0.25
+entrdome_s09 0 4 1.6 0 23 12 60 0.25
+entrdome_s10 0 4 1.6 0 23 12 60 0.25
+entrdome_s11 0 4 1.6 0 23 12 60 0.25

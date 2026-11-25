@@ -1,0 +1,13 @@
+# the forecourt, its colonnades, gateway and the city round it (user, 2026-11-25)
+# name, eye, look-at (Blender metres; the forecourt's paving is at -1.4), field of view, seconds to settle
+fc_main       0 125 0.2       0 40 12       70 8
+fc_gate       0 70 0.2        0 150 6       70 8
+fc_colonnade  20 66 0.2       27 112 4      70 8
+fc_undercol   29 78 0.8       29 130 3      70 8
+fc_lane       35 52 0.2       33 -20 6      70 8
+fc_steps      10 59 0.2       0 47 2        60 8
+fc_aerial     -70 175 65      0 50 0        60 8
+fc_skyline    5 100 0.2       -60 110 16    70 8
+fc_roofs      -20 120 14      -48 95 18     45 8
+fc_portroof   14 64 30        0 40 22       45 8
+fc_edges      20 54 0.2       26 60 -1.4    55 8

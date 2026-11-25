@@ -1,0 +1,10 @@
+# the outside: where the portico's block meets the drum, the materials, the doors seen from the portico
+# name, eye, look-at (Blender metres), field of view, seconds to settle
+ext_front     0 80 1.7        0 35 12       70 6
+ext_left      -34 52 1.7      -17 26 10     60 6
+ext_side      -42 24 4        -17 22 14     60 6
+ext_top       -30 45 32       -14 24 24     55 6
+ext_right     34 52 1.7       17 26 10      60 6
+ext_door      0 46 1.7        0 28 5        55 6
+ext_door_r    4 40 1.7        0 28 4        55 6
+ext_drum      -30 -10 2       -20 -5 14     70 6

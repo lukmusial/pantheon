@@ -1,0 +1,17 @@
+{
+ "quarter": -1,
+ "cut_fraction": 0.3,
+ "abacus_rotation_deg": 35.5,
+ "triangles": 965002,
+ "size": [
+  1.1264914274215698,
+  1.1754338145256042,
+  1.0
+ ],
+ "ring_diameter": 0.7774933390068143,
+ "ring_offset_removed": [
+  -0.03204632827204325,
+  -0.041181378483868575
+ ],
+ "ring_points": 1764
+}

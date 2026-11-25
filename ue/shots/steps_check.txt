@@ -1,0 +1,7 @@
+# entrance passage, the podium steps and the dome's step rings, for the flicker (user, 2026-11-25)
+st_door       0 40 1.6        0 26 0.5      60 6
+st_steps      6 58 0.2        0 50 -0.6     50 6
+st_steps2     -12 55 -0.4     -6 50 -0.8    50 6
+st_side       22 45 0.2       17 40 -0.5    55 6
+st_rings      -60 70 2        -20 10 36     30 6
+st_rings2     30 40 0.2       10 5 36       35 6

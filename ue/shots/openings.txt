@@ -1,0 +1,5 @@
+# doors and windows of the city looking into dark rooms, the plaza paving (user, 2026-11-25)
+wi_lane       35.5 8 0.2      40.5 18 1.4   60 8
+wi_col        28 88 0.2       33 92 1.4     60 8
+wi_upper      0 100 0.2       34 100 14     30 8
+wi_paving     4 70 0.2        8 82 -1.4     60 8

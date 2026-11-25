@@ -1,0 +1,6 @@
+# the inner dome painted as the night sky: from the middle of the floor straight up, from the door
+# across the rotunda, the coffers close, and the room below (how much darker is it?)
+dome_up      0 0.5 1.6     0 0 43      100 8
+dome_door    0 19 1.6      0 -10 26    95 5
+dome_coffer  0 4 1.6       9 -14 27    35 5
+dome_room    0 17 1.6      0 -22 5     90 5

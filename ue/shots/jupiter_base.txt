@@ -1,0 +1,9 @@
+# Jupiter's pedestal: its sides (user, 2026-11-24: jagged triangular distortion in the shadows and
+# light on them) and the mosaic on its right-hand side; the dome mosaic on the dome's right
+jup_front    0 -14 1.7       0 -22.4 1.4     60 6
+jup_right    -4.2 -19.8 1.6  -1.5 -22.3 1.0  55 6
+jup_rclose   -2.9 -21.2 1.2  -1.5 -22.1 1.0  45 6
+jup_left     4.2 -19.8 1.6   1.5 -22.3 1.0   55 6
+jup_lclose   2.9 -21.2 1.2   1.5 -22.3 1.0   45 6
+dome_right   3 2 1.6         -20.99 2.36 29.2  55 6
+dome_rzoom   2 1 1.6         -20.99 2.36 29.2  12 6
