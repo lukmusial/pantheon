@@ -1416,6 +1416,8 @@ def build_floor_and_portico():
 # (user, 2026-11-25).
 COLONNADE = {"front": 24.2, "axis": 25.4, "back": 32.0, "wall": 0.6, "y0": 56.0, "y1": 150.0,
              "h": 7.2, "d": 0.8, "spacing": 3.6}
+# Agrippa's Basilica of Neptune behind the rotunda: its walls' extent along y, height, gable rise, eaves
+BASILICA = {"y0": -52.0, "y1": -28.4, "h": 22.0, "ridge": 5.5, "overhang": 0.6}
 CITY_RNG = random.Random(4140)
 CITY_COLOURS = ("Ochre", "Red", "Cream", "Brick")
 FLAT = lambda u, v, z: (u, v, z)
@@ -1782,8 +1784,8 @@ def build_surroundings(half_w, yb, front, y_low):
     # the city: blocks closing the forecourt and the lanes, then rows of blocks to the horizon.
     # Basilica of Neptune against the rotunda's back: a tall hall under a gable roof, its long side to
     # the rotunda, with pilasters and big windows high up
-    bas_y0, bas_y1 = -52.0, -28.4
-    block(parts, -32.0, 32.0, bas_y0, bas_y1, 22.0, colour="Brick", omit=("+y",), roof=False)
+    bas_y0, bas_y1 = BASILICA["y0"], BASILICA["y1"]
+    block(parts, -32.0, 32.0, bas_y0, bas_y1, BASILICA["h"], colour="Brick", omit=("+y",), roof=False)
     facade(parts, parts["Brick"], "y", bas_y1, 1.0, -32.0, 32.0, PZ, PZ + 22.0,
            [(PZ + 12.0, PZ + 19.0, [(-28.0 + 8.0 * k - 1.6, -28.0 + 8.0 * k + 1.6) for k in range(8)], "window")],
            depth=2.0, trims=False)
@@ -1791,7 +1793,8 @@ def build_surroundings(half_w, yb, front, y_low):
         cx = -24.0 + 8.0 * k
         cbox(parts["Trim"], cx - 0.35, cx + 0.35, bas_y1 - 0.05, bas_y1 + 0.25, PZ, PZ + 21.0)
     cbox(parts["Trim"], -32.0, 32.0, bas_y1 - 0.05, bas_y1 + 0.5, PZ + 21.0, PZ + 22.0)
-    gable_prism(roofs, -32.6, 32.6, bas_y0 - 0.6, bas_y1 + 0.6, PZ + 22.0, 5.5, along="x")
+    ov = BASILICA["overhang"]
+    gable_prism(roofs, -32.6, 32.6, bas_y0 - ov, bas_y1 + ov, PZ + BASILICA["h"], BASILICA["ridge"], along="x")
     for sgn in (-1.0, 1.0):
         block(parts, sgn * 32.0, sgn * 40.0, bas_y0, bas_y1, 16.0, detail={"+y": {}}, colour="Ochre")
     # beside the lanes (x = +-40, facing in) and behind the colonnades up to the gateway
@@ -1963,7 +1966,7 @@ INVADER_ALTAR_R = 19.4               # where it stands, and how far its left fac
 INVADER_ALTAR_SIDE = 0.346           # (26.6 cm in the scan, at the prop's scale 1.3)
 INVADER_EXEDRA_AZ = 45.0
 TILE_COLOURS = {"W": "#F2EFE6", "K": "#141416", "R": "#C8281E", "Y": "#F2C230", "G": "#2E8B3A",
-                "P": "#6A2C91", "grout": "#8F8C84"}
+                "P": "#6A2C91", "B": "#2456B4", "grout": "#8F8C84"}
 INVADERS = {
     # one eye, feelers and feet tipped with gold: among the gilded stars of the dome
     "Dome": ["Y.........Y", ".W.......W.", "..WWWWWWW..", ".WWWRRRWWW.", "WWWWRKRWWWW", "WWWWRRRWWWW",
@@ -1978,7 +1981,22 @@ INVADERS = {
                 ".P.PPPPP.P.", "P.P.....P.P", ".P.......P."],
     "Exedra": ["R.R.R.R.R.R", ".RRRRRRRRR.", "...YYYYY...", ".YYYYYYYYY.", "YYKKYYYKKYY", "YYWKYYYWKYY",
                "YYYYYYYYYYY", ".Y.YYYYY.Y.", "Y..Y...Y..Y", ".Y...Y...Y."],
+    # Outside (user, 2026-11-26: "one should be on the wall on the far side of the building. one should
+    # be hidden in the collonades in the plaza. one should be only accessible in the flight mode, a
+    # bigger one on one of the building roofs in the area").
+    # On the back of the drum, in the narrow gap by the Basilica of Neptune: in Neptune's blue
+    "Drum": ["..B.....B..", "...B...B...", "..BBBBBBB..", ".BBKBBBKBB.", "BBBBBBBBBBB", "B.BBBBBBB.B",
+             "B.B.....B.B", "...BB.BB..."],
+    # in a shop doorway of the west colonnade, on the far jamb: seen only from inside the colonnade
+    "Colonnade": ["...GG...", "..GGGG..", ".GGGGGG.", "GGKGGKGG", "GGGGGGGG", "..G..G..", ".G.GG.G.",
+                  "G.G..G.G"],
+    # on the basilica's roof, on the slope that faces the rotunda: below the roof's plane from every
+    # street and hidden from the forecourt by the rotunda, so it is seen only from the air. Crowned
+    "Basilica": ["..Y.YYYY.Y..", "....WWWW....", ".WWWWWWWWWW.", "WWWWWWWWWWWW", "WWWKKWWKKWWW",
+                 "WWWWWWWWWWWW", "...WW..WW...", "..WW.WW.WW..", "WW........WW"],
 }
+INVADER_DRUM_AZ = 298.0          # behind the rotunda, 3.7 m from the basilica's wall
+INVADER_COLONNADE_DOOR = 8       # the west colonnade's ninth shop doorway from the portico
 
 
 def mosaic(name, rows, centre, right, up, pitch, seed):
@@ -2060,6 +2078,27 @@ def build_invaders():
     mosaic("Invader_Jupiter", INVADERS["Jupiter"], Vector((cx, cy, 1.0)), outward.cross(up) * -1.0, up, 0.035, 4)
     mosaic("Invader_Exedra", INVADERS["Exedra"],
            radial * (P["R"] + P["exedra_depth_rect"] - 0.003) + tangent * 0.3 + up * 1.75, -tangent, up, 0.035, 3)
+
+    # outside. On the drum, 2 m above the forecourt, facing out (its edges stand 2 mm further off the
+    # curved wall than its middle)
+    a = math.radians(INVADER_DRUM_AZ)
+    radial, tangent = Vector((math.cos(a), math.sin(a), 0.0)), Vector((-math.sin(a), math.cos(a), 0.0))
+    mosaic("Invader_Drum", INVADERS["Drum"], radial * (P["R"] + P["wall_t"] + 0.004) + up * (PLAZA_Z + 2.0),
+           tangent, up, 0.06, 5)
+    # on the far jamb of a shop doorway in the west colonnade's back wall (build_surroundings: the jamb
+    # runs through the wall's thickness, x from -back to -(back + wall), and faces back to the portico)
+    C = COLONNADE
+    door = C["y0"] + 2.0 + C["spacing"] * (2 * INVADER_COLONNADE_DOOR + 0.5)
+    mosaic("Invader_Colonnade", INVADERS["Colonnade"],
+           Vector((-(C["back"] + 0.5 * C["wall"]), door + 1.2 - 0.004, PLAZA_Z + 0.6 + 1.7)),
+           Vector((1.0, 0.0, 0.0)), up, 0.05, 6)
+    # on the north slope of the basilica's gable roof, half way up, big enough to read from the air
+    B = BASILICA
+    run, rise = 0.5 * (B["y1"] - B["y0"]) + B["overhang"], B["ridge"]
+    slope_up = Vector((0.0, -run, rise)).normalized()
+    normal = Vector((0.0, rise, run)).normalized()
+    mid = Vector((0.0, B["y1"] + B["overhang"] - 0.5 * run, PLAZA_Z + B["h"] + 0.5 * rise))
+    mosaic("Invader_Basilica", INVADERS["Basilica"], mid + normal * 0.01, Vector((-1.0, 0.0, 0.0)), slope_up, 0.3, 7)
 
 
 # --------------------------------------------------------------------------

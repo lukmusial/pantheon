@@ -12,3 +12,15 @@ inv_altar_close  5.5 18.5 1.0     4.12 18.96 0.6       40 6
 inv_exedra_front 9.2 9.2 1.6      17.8 18.22 2.4       45 6
 inv_exedra_side  11.67 16.62 1.6  17.8 18.22 1.9       35 6
 inv_exedra_close 15.63 18.74 1.6  17.8 18.22 1.75      55 6
+# outside (user, 2026-11-26). On the back of the drum, in the gap by the basilica: from the lane, and close
+inv_drum_lane    22 -26 0.2       13.11 -24.65 0.6     60 6
+inv_drum_close   14.52 -27.3 0.2  13.11 -24.65 0.6     50 6
+# on the far jamb of a shop doorway in the west colonnade: from the forecourt (hidden), along the
+# colonnade, and close
+inv_col_plaza    -15 110 0.2      -32.3 118.6 0.9      40 6
+inv_col_walk     -29 112 0.8      -32.3 118.6 0.9      55 6
+inv_col_close    -31 116.2 0.8    -32.3 118.6 0.9      45 6
+# on the basilica's roof, facing the rotunda: from the air over the dome, and from the lane (not seen)
+inv_bas_air      0 -22 55         0 -34 23.35          40 6
+inv_bas_high     25 -30 40        0 -34 23.35          50 6
+inv_bas_lane     35 -20 0.2       0 -34 23.35          60 6

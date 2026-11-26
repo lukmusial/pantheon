@@ -1,13 +1,13 @@
-"""The easter egg, in place (no level rebuild): four small tile mosaics of pixel creatures, in the
-manner of the street mosaics set on city walls (user, 2026-11-24). blender/build_pantheon.py makes
-them (build_invaders) and leaves out the coffer rosette one of them replaces:
+"""The easter egg, in place (no level rebuild): small tile mosaics of pixel creatures, in the manner
+of the street mosaics set on city walls (user, 2026-11-24): four inside, three outside (2026-11-26).
+blender/build_pantheon.py makes them (build_invaders) and leaves out the coffer rosette one of them
+replaces:
 
     blender -b --python blender/build_pantheon.py -- --export assets/architecture/fbx \\
-        --only Gilded_Rosettes,Invader_Dome,Invader_Altar,Invader_Exedra,Invader_Jupiter
+        --only Gilded_Rosettes,Invader_Dome,Invader_Altar,Invader_Exedra,Invader_Jupiter,Invader_Drum,Invader_Colonnade,Invader_Basilica
 
-This script builds /Game/Materials/M_InvaderTile, imports those five meshes and puts the four
-mosaics into /Game/Maps/Pantheon (again, if they are there already). build_scene.py does the same on a
-full build. INVADERS=off takes the mosaics out of the map (the rosette comes back with a Blender
+This script builds /Game/Materials/M_InvaderTile, imports those meshes and puts the mosaics into
+/Game/Maps/Pantheon (again, if they are there already). build_scene.py does the same on a full build. INVADERS=off takes the mosaics out of the map (the rosette comes back with a Blender
 export without INVADER_COFFER). INVADER_GLOW=<x> sets the tiles' own light (default 0).
 
     UnrealEditor ue/Pantheon/Pantheon.uproject -run=pythonscript -script=ue/scripts/place_invaders.py \\
@@ -28,7 +28,10 @@ PKG = "/Game/Architecture"
 MAP = "/Game/Maps/Pantheon"
 TILE = "/Game/Materials/M_InvaderTile"
 GILDED = "/Game/Materials/MI_Gilded_Satin"
-MOSAICS = ("Invader_Dome", "Invader_Altar", "Invader_Exedra", "Invader_Jupiter")
+MOSAICS = ("Invader_Dome", "Invader_Altar", "Invader_Exedra", "Invader_Jupiter", "Invader_Drum", "Invader_Colonnade",
+           "Invader_Basilica")
+# lit by the sun, as build_scene.EXTERIOR_PREFIXES lists them
+OUTSIDE = ("Invader_Drum", "Invader_Colonnade", "Invader_Basilica")
 
 assets = unreal.EditorAssetLibrary
 
@@ -96,8 +99,9 @@ def main():
         comp = a.get_component_by_class(unreal.StaticMeshComponent)
         comp.set_editor_property("mobility", unreal.ComponentMobility.STATIC)
         comp.set_static_mesh(meshes[n])
-        # interior surfaces are lit on channel 1 only (build_scene.INTERIOR_CHANNELS)
-        comp.set_editor_property("lighting_channels", unreal.LightingChannels(channel0=False, channel1=True, channel2=False))
+        # interior surfaces are lit on channel 1 only (build_scene.INTERIOR_CHANNELS); outside, the default
+        if n not in OUTSIDE:
+            comp.set_editor_property("lighting_channels", unreal.LightingChannels(channel0=False, channel1=True, channel2=False))
         comp.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION)
         a.set_actor_label(n)
         b = meshes[n].get_bounding_box()

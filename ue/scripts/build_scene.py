@@ -589,7 +589,7 @@ def enable_nanite(mesh, material=None, nanite=True):
 # interior walls (they went white in close-ups); with channels it cannot reach them at all.
 EXTERIOR_PREFIXES = ("Ground", "Forecourt_", "Portico_", "Orn_Portico_", "Bronze_Roof", "Bronze_Inscription", "Drum_Outer",
                      "Dome_Outer", "Capital_Portico_", "Capital_Forecourt_", "Statue_augustus_portico",
-                     "Statue_agrippa_portico")
+                     "Statue_agrippa_portico", "Invader_Drum", "Invader_Colonnade", "Invader_Basilica")
 INTERIOR_CHANNELS = unreal.LightingChannels(channel0=False, channel1=True, channel2=False)
 ALL_CHANNELS = unreal.LightingChannels(channel0=True, channel1=True, channel2=False)
 
