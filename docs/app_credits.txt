@@ -1,0 +1,24 @@
+The Pantheon, c. 126 AD
+A walk through Hadrian's Pantheon in Rome as it may have looked when new.
+https://github.com/lukmusial/pantheon
+
+Licences
+- Code: MIT (LICENSE in the repository).
+- Everything else made for the project: CC BY-NC-SA 4.0 (LICENSE-CONTENT in the repository).
+- Third-party assets keep their own licences, listed below. Some are non-commercial, so this app may
+  only be shared free of charge.
+
+Unreal Engine
+Unreal(R) Engine, Copyright 1998 - 2026, Epic Games, Inc. All rights reserved.
+Unreal(R) is a trademark or registered trademark of Epic Games, Inc. in the United States of America
+and elsewhere.
+
+Stone, metal and plaster textures: ambientCG (CC0); scanned surfaces and decals from Quixel Megascans
+through Fab, used under Fab's licence.
+Fire: JangaFX's free fire simulations (CC0).
+Clouds: Unreal Engine's own volumetric cloud material.
+The pediment's eagle: modelled from a photo of the Trajanic eagle relief at Santi Apostoli, Rome, by
+Sailko, CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/), via Wikimedia Commons; modelled with
+TRELLIS.2 (Microsoft) and Depth Anything V2.
+
+The sources of the statues, the paintings and the eagle follow, as listed in the repository.

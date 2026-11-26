@@ -74,13 +74,11 @@ Large and downloaded files (scans, textures, FBX exports, the Unreal content, re
 repository: the scripts and manifests rebuild or fetch them. The project was made on an Apple M5 Pro
 with Unreal Engine 5.9.0, Blender 5.3 and Xcode 27.2.
 
-Packaging the app:
-
-```
-"/Users/Shared/Epic Games/UE_5.9/Engine/Build/BatchFiles/RunUAT.sh" BuildCookRun \
-    -project="$PWD/ue/Pantheon/Pantheon.uproject" -platform=Mac -clientconfig=Shipping \
-    -build -cook -stage -pak -iostore -compressed -nop4 -utf8output -unattended
-```
+Packaging the app: `tools/package_mac.sh [version]` makes a Shipping build, strips its symbols, adds the
+credits, signs it ad hoc and writes `dist/Pantheon.app` (about 1.0 GB) and `dist/Pantheon-<version>-mac.dmg`
+(about 0.8 GB). For the app, world textures are capped at 2048 px (`ue/Pantheon/Config/DefaultDeviceProfiles.ini`);
+the editor and the films keep them whole. The app is not notarised, so on first launch macOS asks for
+"Open Anyway" in System Settings > Privacy & Security.
 
 ## Sources and credits
 
